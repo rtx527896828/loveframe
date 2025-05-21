@@ -1,0 +1,41 @@
+.slideshow-container {
+  position: fixed; /* Or absolute if within a specific parent */
+  top: 0;
+  left: 0;
+  width: 100vw; /* Full viewport width */
+  height: 100vh; /* Full viewport height */
+  background-color: #000; /* Black background for the frame effect */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* Hide anything that might overflow */
+}
+
+.fullscreen-photo {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain; /* Show entire image, letterbox/pillarbox if necessary */
+  /* Or use object-fit: cover; if you want it to always fill, potentially cropping */
+  display: block; /* Remove extra space below img if any */
+}
+
+.message-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.loading-message,
+.no-photos-message {
+  /* padding: 20px; // Kept from previous styles, adjust if needed */
+  font-size: 1.5em; /* Made slightly larger for fullscreen */
+  color: #ccc; /* Light color for dark background */
+}
+
+/* Remove old grid styles if they exist, or ensure they don't conflict */
+.photo-grid, .photo-item {
+  display: none; /* Hide old grid elements if they were not removed from HTML */
+}

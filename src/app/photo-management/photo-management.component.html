@@ -1,0 +1,31 @@
+<div class="upload-form-container">
+  <h2>Upload New Photo</h2>
+  <div class="form-field">
+    <label for="photoName">Photo Name:</label>
+    <input type="text" id="photoName" [(ngModel)]="photoName" placeholder="Enter photo name" [disabled]="uploading">
+  </div>
+  <div class="form-field">
+    <label for="fileInput">Choose Photo:</label>
+    <input type="file" id="fileInput" (change)="onFileSelected($event)" accept="image/*" [disabled]="uploading">
+  </div>
+  <button class="upload-button" (click)="uploadPhoto()" [disabled]="!selectedFile || !photoName.trim() || uploading">
+    <span *ngIf="!uploading">Upload</span>
+    <span *ngIf="uploading">Uploading...</span>
+  </button>
+
+  <div *ngIf="uploading && typeof uploadProgress === 'number'" class="spinner"></div>
+
+  <div *ngIf="uploadProgress !== null && uploadProgress >= 0 && !uploadMessage" class="progress-bar-container">
+    <div class="progress-bar" [style.width.%]="uploadProgress">
+      {{ uploadProgress | number:'1.0-0' }}%
+    </div>
+  </div>
+
+  <div *ngIf="uploadMessage" class="success-message">
+    <p>{{ uploadMessage }}</p>
+  </div>
+
+  <div *ngIf="uploadError" class="error-message">
+    <p>{{ uploadError }}</p>
+  </div>
+</div>

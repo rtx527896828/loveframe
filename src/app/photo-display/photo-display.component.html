@@ -1,0 +1,19 @@
+<div class="slideshow-container">
+  <ng-container *ngIf="!isLoading && photos.length > 0 && currentPhoto; else noPhotosOrLoading">
+    <img [@fade]="animationState" [src]="currentPhoto.url" [alt]="currentPhoto.name" class="fullscreen-photo">
+    <!-- You could add photo name or other info overlayed here if desired -->
+  </ng-container>
+
+  <ng-template #noPhotosOrLoading>
+    <div *ngIf="isLoading" class="message-container">
+      <p class="loading-message">Fetching photos...</p>
+    </div>
+    <div *ngIf="!isLoading && photos.length === 0" class="message-container">
+      <p class="no-photos-message">No photos to display.</p>
+    </div>
+    <!-- Fallback for an unexpected state, ideally not shown -->
+    <div *ngIf="!isLoading && photos.length > 0 && !currentPhoto" class="message-container">
+      <p class="loading-message">Preparing display...</p>
+    </div>
+  </ng-template>
+</div>
